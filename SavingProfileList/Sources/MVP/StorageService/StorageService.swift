@@ -8,16 +8,21 @@
 import Foundation
 import UIKit
 
-private protocol StorageServiceProtocol {
+protocol StorageServiceProtocol {
     func giveProfiles(completion: () -> Void)
     func createProfileBy(name: String)
     func delete(profile: Profile)
     func updateProfile(_ profile: Profile, newName: String, newBirthday: Date, newGender: String, newUserpic: Data)
+    var models: [Profile] { get set }
 }
 
 final class StorageService: StorageServiceProtocol {
+    
+    //MARK: - Variables
 
     public var models = [Profile]()
+    
+    //MARK: - CoreData
     
     private let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
             

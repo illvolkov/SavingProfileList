@@ -16,6 +16,7 @@
 		04863758287B6A200056D9CE /* Profile+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04863756287B6A200056D9CE /* Profile+CoreDataClass.swift */; };
 		04863759287B6A200056D9CE /* Profile+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04863757287B6A200056D9CE /* Profile+CoreDataProperties.swift */; };
 		0486375D287C57A60056D9CE /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0486375C287C57A60056D9CE /* StorageService.swift */; };
+		0486375F287C6D140056D9CE /* ProfileListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0486375E287C6D140056D9CE /* ProfileListPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		04863756287B6A200056D9CE /* Profile+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profile+CoreDataClass.swift"; sourceTree = "<group>"; };
 		04863757287B6A200056D9CE /* Profile+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profile+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0486375C287C57A60056D9CE /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		0486375E287C6D140056D9CE /* ProfileListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileListPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 		0486374C287B435F0056D9CE /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				0486375E287C6D140056D9CE /* ProfileListPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04863735287B40170056D9CE /* ProfileListViewController.swift in Sources */,
+				0486375F287C6D140056D9CE /* ProfileListPresenter.swift in Sources */,
 				0486375D287C57A60056D9CE /* StorageService.swift in Sources */,
 				04863731287B40170056D9CE /* AppDelegate.swift in Sources */,
 				04863759287B6A200056D9CE /* Profile+CoreDataProperties.swift in Sources */,
