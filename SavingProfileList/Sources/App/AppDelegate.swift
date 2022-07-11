@@ -15,6 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        let profileListViewController = ModuleBuilder.createProfileListModule()
+        
+        window?.rootViewController = UINavigationController(rootViewController: profileListViewController)
+        
         return true
     }
 

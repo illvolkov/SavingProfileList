@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol ProfileListPresenterDelegate: AnyObject {
+protocol ProfileListPresenterDelegate {
     func present(profiles: [Profile])
 }
 
@@ -16,20 +16,34 @@ typealias PresenterDelegate = ProfileListPresenterDelegate & UIViewController
 
 final class ProfileListPresenter {
     
-    weak private var delegate: PresenterDelegate?
-    private var storageService: StorageServiceProtocol?
+    weak public var delegate: PresenterDelegate?
+    public var storageService: StorageServiceProtocol?
     
     public func getProfiles() {
+        
         guard let storageService = storageService else { return }
 
         storageService.giveProfiles {
+            
             guard let delegate = delegate else { return }
 
             delegate.present(profiles: storageService.models)
         }
     }
     
-    public func setView(delegate: PresenterDelegate) {
-        self.delegate = delegate
+    public func presentEnterNameAlert() {
+        let alert = UIAlertController(title: "Enter profile name", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+        
+        guard let delegate = delegate else { return }
+        
+        delegate.present(alert, animated: true)
+    }
+    
+    public func saveProfileBy(name: String) {
+        
+        guard let storageService = storageService else { return }
+        
+        storageService.createProfileBy(name: name)
     }
 }
