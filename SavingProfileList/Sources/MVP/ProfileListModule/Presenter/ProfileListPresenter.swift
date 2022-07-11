@@ -32,6 +32,7 @@ final class ProfileListPresenter {
     }
     
     public func presentEnterNameAlert() {
+        
         let alert = UIAlertController(title: "Enter profile name", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
         
@@ -45,5 +46,12 @@ final class ProfileListPresenter {
         guard let storageService = storageService else { return }
         
         storageService.createProfileBy(name: name)
+    }
+    
+    public func delete(profile: Profile) {
+        
+        guard let storageService = storageService else { return }
+        
+        storageService.delete(profile: profile)
     }
 }
