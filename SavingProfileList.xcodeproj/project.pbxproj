@@ -13,6 +13,8 @@
 		0486373B287B40180056D9CE /* SavingProfileList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04863739287B40180056D9CE /* SavingProfileList.xcdatamodeld */; };
 		0486373D287B40190056D9CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0486373C287B40190056D9CE /* Assets.xcassets */; };
 		04863740287B40190056D9CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0486373E287B40190056D9CE /* LaunchScreen.storyboard */; };
+		04863758287B6A200056D9CE /* Profile+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04863756287B6A200056D9CE /* Profile+CoreDataClass.swift */; };
+		04863759287B6A200056D9CE /* Profile+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04863757287B6A200056D9CE /* Profile+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		0486373C287B40190056D9CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0486373F287B40190056D9CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04863741287B40190056D9CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04863756287B6A200056D9CE /* Profile+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profile+CoreDataClass.swift"; sourceTree = "<group>"; };
+		04863757287B6A200056D9CE /* Profile+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profile+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +69,8 @@
 		04863747287B42E50056D9CE /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				04863756287B6A200056D9CE /* Profile+CoreDataClass.swift */,
+				04863757287B6A200056D9CE /* Profile+CoreDataProperties.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -196,7 +202,9 @@
 			files = (
 				04863735287B40170056D9CE /* ProfileListViewController.swift in Sources */,
 				04863731287B40170056D9CE /* AppDelegate.swift in Sources */,
+				04863759287B6A200056D9CE /* Profile+CoreDataProperties.swift in Sources */,
 				0486373B287B40180056D9CE /* SavingProfileList.xcdatamodeld in Sources */,
+				04863758287B6A200056D9CE /* Profile+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
