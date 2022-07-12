@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol ProfileListViewProtocol {
+protocol ProfileListViewProtocol: AnyObject {
     func present(profiles: [Profile])
 }
 
@@ -63,10 +63,7 @@ final class ProfileListViewController: UIViewController {
         let button = UIButton()
         
         button.setTitle("Cancel", for: .normal)
-        if let titleLabel = button.titleLabel {
-            titleLabel.font = .systemFont(ofSize: view.frame.width * 0.045)
-            titleLabel.textColor = .white
-        }
+        button.titleLabel?.textColor = .white
         button.addTarget(self, action: #selector(cancelButtonDidTap), for: .touchUpInside)
         
         return button
@@ -76,9 +73,7 @@ final class ProfileListViewController: UIViewController {
         let button = UIButton()
         
         button.setTitle("Save", for: .normal)
-        if let titleLabel = button.titleLabel{
-            titleLabel.textColor = .white
-        }
+        button.titleLabel?.textColor = .white
         button.layer.borderColor = UIColor.white.cgColor
         button.layer.borderWidth = 2
         button.addTarget(self, action: #selector(saveButtonDidTap), for: .touchUpInside)
@@ -247,8 +242,7 @@ extension ProfileListViewController: UITableViewDelegate, UITableViewDataSource 
             tableView.beginUpdates()
             
             let profile = models.remove(at: indexPath.row)
-            guard let presenter = presenter else { return }
-            presenter.delete(profile: profile)
+            presenter?.delete(profile: profile)
             tableView.deleteRows(at: [indexPath], with: .fade)
             
             tableView.endUpdates()

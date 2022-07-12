@@ -12,11 +12,11 @@ protocol ProfileListPresenterDelegate {
     func present(profiles: [Profile])
 }
 
-typealias ListPresenterDelegate = ProfileListPresenterDelegate & UIViewController
+typealias PresenterDelegate = ProfileListPresenterDelegate & UIViewController
 
 final class ProfileListPresenter {
     
-    weak public var delegate: ListPresenterDelegate?
+    weak public var delegate: PresenterDelegate?
     public var storageService: StorageServiceProtocol?
     
     public func getProfiles() {

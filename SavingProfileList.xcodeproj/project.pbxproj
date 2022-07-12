@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		04272A22287CCC7900125A6C /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04272A21287CCC7900125A6C /* ModuleBuilder.swift */; };
-		047D071B287D88BC0073166F /* DetailProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047D071A287D88BC0073166F /* DetailProfilePresenter.swift */; };
 		04863731287B40170056D9CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04863730287B40170056D9CE /* AppDelegate.swift */; };
 		04863735287B40170056D9CE /* ProfileListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04863734287B40170056D9CE /* ProfileListViewController.swift */; };
 		04863738287B40170056D9CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04863736287B40170056D9CE /* Main.storyboard */; };
@@ -23,7 +22,6 @@
 
 /* Begin PBXFileReference section */
 		04272A21287CCC7900125A6C /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
-		047D071A287D88BC0073166F /* DetailProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProfilePresenter.swift; sourceTree = "<group>"; };
 		0486372D287B40170056D9CE /* SavingProfileList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SavingProfileList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04863730287B40170056D9CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04863734287B40170056D9CE /* ProfileListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileListViewController.swift; sourceTree = "<group>"; };
@@ -49,30 +47,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		047D0717287D82320073166F /* DetailProfileModule */ = {
-			isa = PBXGroup;
-			children = (
-				047D0719287D83F40073166F /* Presenter */,
-				047D0718287D83EB0073166F /* View */,
-			);
-			path = DetailProfileModule;
-			sourceTree = "<group>";
-		};
-		047D0718287D83EB0073166F /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		047D0719287D83F40073166F /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				047D071A287D88BC0073166F /* DetailProfilePresenter.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
 		04863724287B40170056D9CE = {
 			isa = PBXGroup;
 			children = (
@@ -128,7 +102,6 @@
 			isa = PBXGroup;
 			children = (
 				04863760287CCB4C0056D9CE /* ModuleBuilder */,
-				047D0717287D82320073166F /* DetailProfileModule */,
 				0486375A287C571F0056D9CE /* ProfileListModule */,
 				04863747287B42E50056D9CE /* Model */,
 				0486375B287C57900056D9CE /* Services */,
@@ -265,7 +238,6 @@
 				0486375D287C57A60056D9CE /* StorageService.swift in Sources */,
 				04272A22287CCC7900125A6C /* ModuleBuilder.swift in Sources */,
 				04863731287B40170056D9CE /* AppDelegate.swift in Sources */,
-				047D071B287D88BC0073166F /* DetailProfilePresenter.swift in Sources */,
 				04863759287B6A200056D9CE /* Profile+CoreDataProperties.swift in Sources */,
 				0486373B287B40180056D9CE /* SavingProfileList.xcdatamodeld in Sources */,
 				04863758287B6A200056D9CE /* Profile+CoreDataClass.swift in Sources */,
