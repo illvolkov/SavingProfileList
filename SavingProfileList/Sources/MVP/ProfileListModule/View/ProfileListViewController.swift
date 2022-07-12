@@ -63,7 +63,9 @@ final class ProfileListViewController: UIViewController {
         let button = UIButton()
         
         button.setTitle("Cancel", for: .normal)
-        button.titleLabel?.textColor = .white
+        if let titleLabel = button.titleLabel {
+            titleLabel.textColor = .white
+        }
         button.addTarget(self, action: #selector(cancelButtonDidTap), for: .touchUpInside)
         
         return button
@@ -73,7 +75,9 @@ final class ProfileListViewController: UIViewController {
         let button = UIButton()
         
         button.setTitle("Save", for: .normal)
-        button.titleLabel?.textColor = .white
+        if let titleLabel = button.titleLabel {
+            titleLabel.textColor = .white
+        }
         button.layer.borderColor = UIColor.white.cgColor
         button.layer.borderWidth = 2
         button.addTarget(self, action: #selector(saveButtonDidTap), for: .touchUpInside)
@@ -124,7 +128,8 @@ final class ProfileListViewController: UIViewController {
     
     @objc private func keyBoardWillShow(notification: NSNotification) {
         UIView.transition(with: cancelButton, duration: 0.4, options: .transitionFlipFromRight) { [weak self] in
-            self?.cancelButton.isHidden = false
+            guard let self = self else { return }
+            self.cancelButton.isHidden = false
         }
     }
     
@@ -186,7 +191,8 @@ final class ProfileListViewController: UIViewController {
     @objc private func cancelButtonDidTap() {
         nameField.resignFirstResponder()
         UIView.animate(withDuration: 0.4) { [weak self] in
-            self?.cancelButton.isHidden = true
+            guard let self = self else { return }
+            self.cancelButton.isHidden = true
         }
     }
     

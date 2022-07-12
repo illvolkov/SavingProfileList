@@ -12,9 +12,9 @@ protocol ProfileListPresenterDelegate {
     func present(profiles: [Profile])
 }
 
-typealias PresenterDelegate = ProfileListPresenterDelegate & UIViewController
-
 final class ProfileListPresenter {
+    
+    typealias PresenterDelegate = ProfileListPresenterDelegate & UIViewController
     
     weak public var delegate: PresenterDelegate?
     public var storageService: StorageServiceProtocol?
