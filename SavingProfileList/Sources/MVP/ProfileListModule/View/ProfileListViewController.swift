@@ -67,7 +67,7 @@ final class ProfileListViewController: UIViewController {
             titleLabel.textColor = .white
             titleLabel.font = .systemFont(ofSize: view.frame.width * Sizes.fontSize0_045)
         }
-        button.addTarget(self, action: #selector(cancelButtonDidTap), for: .touchUpInside)
+        button.addTarget(self, action: #selector(hideInputElements), for: .touchUpInside)
         
         return button
     }()
@@ -198,7 +198,7 @@ final class ProfileListViewController: UIViewController {
     
     //MARK: - Actions
     
-    @objc private func cancelButtonDidTap() {
+    @objc private func hideInputElements() {
         nameField.resignFirstResponder()
         UIView.animate(withDuration: Display.animateDuration0_4) { [weak self] in
             guard let self = self else { return }
@@ -221,7 +221,7 @@ final class ProfileListViewController: UIViewController {
         } else {
             presenter.saveProfileBy(name: text.trimmingCharacters(in: .whitespaces))
             presenter.getProfiles()
-            nameField.resignFirstResponder()
+            hideInputElements()
             nameField.text = ""
         }
     }
