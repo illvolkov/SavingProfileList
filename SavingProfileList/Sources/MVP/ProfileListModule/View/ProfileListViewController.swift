@@ -65,6 +65,7 @@ final class ProfileListViewController: UIViewController {
         button.setTitle("Cancel", for: .normal)
         if let titleLabel = button.titleLabel {
             titleLabel.textColor = .white
+            titleLabel.font = .systemFont(ofSize: view.frame.width * 0.045)
         }
         button.addTarget(self, action: #selector(cancelButtonDidTap), for: .touchUpInside)
         
@@ -77,6 +78,7 @@ final class ProfileListViewController: UIViewController {
         button.setTitle("Save", for: .normal)
         if let titleLabel = button.titleLabel {
             titleLabel.textColor = .white
+            titleLabel.font = .systemFont(ofSize: view.frame.width * 0.045)
         }
         button.layer.borderColor = UIColor.white.cgColor
         button.layer.borderWidth = 2
@@ -97,14 +99,18 @@ final class ProfileListViewController: UIViewController {
         return tableView
     }()
     
+    private lazy var numberOfCharactersLabel: UILabel = {
+        let label = UILabel()
+        label.text = "from 3 to 16 characters"
+        label.textColor = .white
+        label.font = .systemFont(ofSize: view.frame.width * 0.03)
+        return label
+    }()
+    
     //MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let presenter = presenter {
-            presenter.getProfiles()
-        }
         
         setupHierarchy()
         setupLayout()
@@ -114,22 +120,27 @@ final class ProfileListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        if let presenter = presenter {
+            presenter.getProfiles()
+        }
         setupNavigationBar()
-        showCancelButton()
+        showHideCancelButton()
     }
     
-    private func showCancelButton() {
+    private func showHideCancelButton() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyBoardWillShow),
                                                name: UIResponder.keyboardWillShowNotification,
                                                object: nil)
         cancelButton.isHidden = true
+        numberOfCharactersLabel.isHidden = true
     }
     
     @objc private func keyBoardWillShow(notification: NSNotification) {
         UIView.transition(with: cancelButton, duration: 0.4, options: .transitionFlipFromRight) { [weak self] in
             guard let self = self else { return }
             self.cancelButton.isHidden = false
+            self.numberOfCharactersLabel.isHidden = false
         }
     }
     
@@ -140,6 +151,7 @@ final class ProfileListViewController: UIViewController {
         view.addSubview(hStackView)
         hStackView.addArrangedSubview(nameField)
         hStackView.addArrangedSubview(cancelButton)
+        view.addSubview(numberOfCharactersLabel)
         view.addSubview(saveButton)
         view.addSubview(tableView)
     }
@@ -155,6 +167,10 @@ final class ProfileListViewController: UIViewController {
         hStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
         hStackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
         hStackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
+        
+        numberOfCharactersLabel.translatesAutoresizingMaskIntoConstraints = false
+        numberOfCharactersLabel.topAnchor.constraint(equalTo: hStackView.bottomAnchor, constant: 5).isActive = true
+        numberOfCharactersLabel.leftAnchor.constraint(equalTo: hStackView.leftAnchor, constant: 5).isActive = true
         
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         saveButton.topAnchor.constraint(equalTo: hStackView.bottomAnchor, constant: 30).isActive = true
@@ -193,6 +209,7 @@ final class ProfileListViewController: UIViewController {
         UIView.animate(withDuration: 0.4) { [weak self] in
             guard let self = self else { return }
             self.cancelButton.isHidden = true
+            self.numberOfCharactersLabel.isHidden = true
         }
     }
     
@@ -205,10 +222,14 @@ final class ProfileListViewController: UIViewController {
             return
         }
         
-        presenter.saveProfileBy(name: text.trimmingCharacters(in: .whitespaces))
-        presenter.getProfiles()
-        nameField.resignFirstResponder()
-        nameField.text = ""
+        if text.count < 3 || text.count > 16 {
+            presenter.presentInvalidNumberAlert()
+        } else {
+            presenter.saveProfileBy(name: text.trimmingCharacters(in: .whitespaces))
+            presenter.getProfiles()
+            nameField.resignFirstResponder()
+            nameField.text = ""
+        }
     }
 }
 
@@ -233,6 +254,10 @@ extension ProfileListViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let model = models[indexPath.row]
+        guard let presenter = presenter else { return }
+        presenter.showDetailProfileViewController(with: model)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -248,8 +273,11 @@ extension ProfileListViewController: UITableViewDelegate, UITableViewDataSource 
             tableView.beginUpdates()
             
             let profile = models.remove(at: indexPath.row)
-            presenter?.delete(profile: profile)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            if let presenter = presenter {
+                presenter.delete(profile: profile)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
             
             tableView.endUpdates()
         }

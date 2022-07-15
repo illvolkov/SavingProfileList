@@ -12,7 +12,7 @@ protocol StorageServiceProtocol {
     func giveProfiles(completion: () -> Void)
     func createProfileBy(name: String)
     func delete(profile: Profile)
-    func updateProfile(_ profile: Profile, newName: String, newBirthday: Date, newGender: String, newUserpic: Data)
+    func updateProfile(_ profile: Profile, newName: String, newBirthday: Date?, newGender: String, newUserpic: Data)
     var models: [Profile] { get set }
 }
 
@@ -72,7 +72,7 @@ final class StorageService: StorageServiceProtocol {
         }
     }
     
-    public func updateProfile(_ profile: Profile, newName: String, newBirthday: Date, newGender: String, newUserpic: Data) {
+    public func updateProfile(_ profile: Profile, newName: String, newBirthday: Date?, newGender: String, newUserpic: Data) {
         guard let context = context else { return }
     
         profile.name = newName

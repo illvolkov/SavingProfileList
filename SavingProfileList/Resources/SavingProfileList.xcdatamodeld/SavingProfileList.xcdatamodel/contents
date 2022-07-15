@@ -7,6 +7,6 @@
         <attribute name="userpic" optional="YES" attributeType="Binary"/>
     </entity>
     <elements>
-        <element name="Profile" positionX="-27" positionY="18" width="128" height="103"/>
+        <element name="Profile" positionX="-27" positionY="18" width="128" height="89"/>
     </elements>
 </model>

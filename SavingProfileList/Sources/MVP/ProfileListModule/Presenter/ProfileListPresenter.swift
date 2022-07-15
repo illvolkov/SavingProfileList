@@ -41,6 +41,18 @@ final class ProfileListPresenter {
         delegate.present(alert, animated: true)
     }
     
+    public func presentInvalidNumberAlert() {
+        
+        let alert = UIAlertController(title: "Invalid number of characters",
+                                      message: "Enter a name containing from 3 to 15 characters",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+        
+        guard let delegate = delegate else { return }
+        
+        delegate.present(alert, animated: true)
+    }
+    
     public func saveProfileBy(name: String) {
         
         guard let storageService = storageService else { return }
@@ -53,5 +65,13 @@ final class ProfileListPresenter {
         guard let storageService = storageService else { return }
         
         storageService.delete(profile: profile)
+    }
+    
+    public func showDetailProfileViewController(with selectedProfile: Profile) {
+        let detailProfileViewController = ModuleBuilder.createDetailProfileModule(with: selectedProfile)
+        guard let delegate = delegate else { return }
+        
+        detailProfileViewController.modalPresentationStyle = .fullScreen
+        delegate.present(detailProfileViewController, animated: true)
     }
 }
