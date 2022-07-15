@@ -10,6 +10,7 @@
 		041F7673287DEF1800D7E88F /* DetailProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041F7672287DEF1800D7E88F /* DetailProfilePresenter.swift */; };
 		041F7675287DF0E200D7E88F /* DetailProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041F7674287DF0E200D7E88F /* DetailProfileViewController.swift */; };
 		041F76782880D6E500D7E88F /* PickerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041F76772880D6E400D7E88F /* PickerField.swift */; };
+		041F767A2881C86200D7E88F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041F76792881C86200D7E88F /* Constants.swift */; };
 		04272A22287CCC7900125A6C /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04272A21287CCC7900125A6C /* ModuleBuilder.swift */; };
 		04863731287B40170056D9CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04863730287B40170056D9CE /* AppDelegate.swift */; };
 		04863735287B40170056D9CE /* ProfileListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04863734287B40170056D9CE /* ProfileListViewController.swift */; };
@@ -27,6 +28,7 @@
 		041F7672287DEF1800D7E88F /* DetailProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProfilePresenter.swift; sourceTree = "<group>"; };
 		041F7674287DF0E200D7E88F /* DetailProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProfileViewController.swift; sourceTree = "<group>"; };
 		041F76772880D6E400D7E88F /* PickerField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerField.swift; sourceTree = "<group>"; };
+		041F76792881C86200D7E88F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		04272A21287CCC7900125A6C /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		0486372D287B40170056D9CE /* SavingProfileList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SavingProfileList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04863730287B40170056D9CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			children = (
 				04863756287B6A200056D9CE /* Profile+CoreDataClass.swift */,
 				04863757287B6A200056D9CE /* Profile+CoreDataProperties.swift */,
+				041F76792881C86200D7E88F /* Constants.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				04863759287B6A200056D9CE /* Profile+CoreDataProperties.swift in Sources */,
 				0486373B287B40180056D9CE /* SavingProfileList.xcdatamodeld in Sources */,
 				04863758287B6A200056D9CE /* Profile+CoreDataClass.swift in Sources */,
+				041F767A2881C86200D7E88F /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

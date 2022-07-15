@@ -17,36 +17,7 @@ final class DetailProfileViewController: UIViewController {
     
 //    //MARK: - Const
 
-    let genders = ["Male",
-                   "Female",
-                   "Lesbian",
-                   "Gay",
-                   "Bisexual",
-                   "Transgender",
-                   "Agender",
-                   "Androgyne",
-                   "Bigender",
-                   "Cis male",
-                   "Cis female",
-                   "FTM",
-                   "MTF",
-                   "Gender Fluid",
-                   "Gender Nonconforming",
-                   "Gender Questioning",
-                   "Gender Variant",
-                   "Genderqueer",
-                   "Neutrois",
-                   "Non-binary",
-                   "Other",
-                   "Pangender",
-                   "Two-spirit",
-                   "Anongender",
-                   "Cavusgender",
-                   "Zodiacgender",
-                   "Aesthetgender",
-                   "Affectugender",
-                   "Digigender",
-                   "Egogender"]
+    let genders = Sequences.gendersList
     
     //MARK: - Variables
     
@@ -60,7 +31,7 @@ final class DetailProfileViewController: UIViewController {
             } else {
                 guard let presenter = presenter else { return }
 
-                if (nameField.text?.count ?? 0) < 3 || (nameField.text?.count ?? 0) > 16 {
+                if (nameField.text?.count ?? 0) < Limitation.textCount3 || (nameField.text?.count ?? 0) > Limitation.textCount16 {
                     presenter.presentInvalidNumberAlert()
                     return
                 } else {
@@ -102,7 +73,7 @@ final class DetailProfileViewController: UIViewController {
     
     private lazy var backgroundImage: UIImageView = {
         let backgroundImage = UIImageView()
-        backgroundImage.image = UIImage(named: "gradient.back")
+        backgroundImage.image = UIImage(named: Images.backgroundImage)
         return backgroundImage
     }()
     
@@ -115,8 +86,8 @@ final class DetailProfileViewController: UIViewController {
     
     private lazy var dismissButton: UIButton = {
         let button = UIButton()
-        let config = UIImage.SymbolConfiguration(pointSize: view.frame.width * 0.08, weight: .light)
-        let image = UIImage(systemName: "xmark.app", withConfiguration: config)
+        let config = UIImage.SymbolConfiguration(pointSize: view.frame.width * Sizes.dismissButtomImageSize, weight: .light)
+        let image = UIImage(systemName: Images.dismissButtonImage, withConfiguration: config)
         button.setImage(image, for: .normal)
         button.tintColor = .white
         button.addTarget(self, action: #selector(dismissButtonDidTap), for: .touchUpInside)
@@ -128,10 +99,10 @@ final class DetailProfileViewController: UIViewController {
         
         if let titleLabel = button.titleLabel {
             titleLabel.textColor = .white
-            titleLabel.font = .systemFont(ofSize: view.frame.width * 0.045)
+            titleLabel.font = .systemFont(ofSize: view.frame.width * Sizes.fontSize0_045)
         }
         button.layer.borderColor = UIColor.white.cgColor
-        button.layer.borderWidth = 2
+        button.layer.borderWidth = Sizes.borderWidth2
         button.addTarget(self, action: #selector(saveEditButtonDidTap), for: .touchUpInside)
         
         return button
@@ -139,23 +110,23 @@ final class DetailProfileViewController: UIViewController {
     
     private lazy var profileImage: UIImageView = {
         let profileImage = UIImageView()
-        profileImage.image = UIImage(named: "empty.avatar")
-        profileImage.layer.cornerRadius = view.frame.width * 0.2
+        profileImage.image = UIImage(named: Images.emptyAvatarImage)
+        profileImage.layer.cornerRadius = view.frame.width * Sizes.cornerRadius2
         profileImage.layer.masksToBounds = true
-        profileImage.layer.contentsRect = CGRect(x: profileImage.frame.origin.x + 0.06,
-                                                 y: profileImage.frame.origin.y + 0.06,
-                                                 width: 0.88,
-                                                 height: 0.88)
+        profileImage.layer.contentsRect = CGRect(x: profileImage.frame.origin.x + Offsets.profileImageXYBoundsOffset0_06,
+                                                 y: profileImage.frame.origin.y + Offsets.profileImageXYBoundsOffset0_06,
+                                                 width: Offsets.profileImageWidthHeightOffset0_88,
+                                                 height: Offsets.profileImageWidthHeightOffset0_88)
         return profileImage
     }()
     
     private lazy var addUserpicButton: UIButton = {
         let button = UIButton(type: .system)
-        let config = UIImage.SymbolConfiguration(pointSize: view.frame.width * 0.35)
-        let image = UIImage(systemName: "plus.circle.fill", withConfiguration: config)
+        let config = UIImage.SymbolConfiguration(pointSize: view.frame.width * Sizes.addUserpicButtonImageSize)
+        let image = UIImage(systemName: Images.addUserpicButtonImage, withConfiguration: config)
         button.setImage(image, for: .normal)
         button.tintColor = .lightGray
-        button.alpha = 0.5
+        button.alpha = Display.addUserpicButtonAlpha
         button.addTarget(self, action: #selector(addUserpicButtonDidTap), for: .touchUpInside)
         return button
     }()
@@ -167,9 +138,9 @@ final class DetailProfileViewController: UIViewController {
     private lazy var nameField: UITextField = {
         let textField = UITextField()
         
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 18, height: 18))
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 25, height: 18))
-        let icon = UIImage(systemName: "person.fill")
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: Sizes.widthSize18, height: Sizes.heightSize18))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: Sizes.viewWidthSize, height: Sizes.heightSize18))
+        let icon = UIImage(systemName: Images.nameFieldImages)
         textField.leftViewMode = UITextField.ViewMode.always
         imageView.image = icon
         //for width offset
@@ -177,13 +148,13 @@ final class DetailProfileViewController: UIViewController {
         textField.leftView = view
         textField.inputAccessoryView = doneButtonForKeyboard
         
-        textField.placeholder = "Name"
+        textField.placeholder = Strings.nameFieldPlaceholderName
         textField.clearButtonMode = .whileEditing
         return textField
     }()
     
-    private lazy var birthdayField = createPickerField(with: "Birthday", iconSystemName: "calendar", inputView: birthdayPicker)
-    private lazy var genderField = createPickerField(with: "Gender", iconSystemName: "allergens", inputView: genderPicker)
+    private lazy var birthdayField = createPickerField(with: Strings.birthdayFieldPlaceholder, iconSystemName: Images.birthdayFieldImage, inputView: birthdayPicker)
+    private lazy var genderField = createPickerField(with: Strings.genderFieldPlaceholder, iconSystemName: Images.genderFieldImage, inputView: genderPicker)
     
     private lazy var doneButtonForKeyboard: UIToolbar = {
         let toolBar = UIToolbar()
@@ -196,9 +167,9 @@ final class DetailProfileViewController: UIViewController {
     
     private lazy var numberOfCharactersLabel: UILabel = {
         let label = UILabel()
-        label.text = "from 3 to 16 characters"
+        label.text = Strings.numberOfCharactersLabelText
         label.textColor = .white
-        label.font = .systemFont(ofSize: view.frame.width * 0.03)
+        label.font = .systemFont(ofSize: view.frame.width * Sizes.numberOfCharactersLabelFontSize)
         return label
     }()
     
@@ -219,7 +190,7 @@ final class DetailProfileViewController: UIViewController {
     
     private lazy var lockIcon: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "lock.fill")
+        imageView.image = UIImage(systemName: Images.lockImage)
         imageView.tintColor = .white
         return imageView
     }()
@@ -265,24 +236,24 @@ final class DetailProfileViewController: UIViewController {
         backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
         topBarHStack.translatesAutoresizingMaskIntoConstraints = false
-        topBarHStack.topAnchor.constraint(equalTo: view.topAnchor, constant: 80).isActive = true
-        topBarHStack.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15).isActive = true
-        topBarHStack.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
+        topBarHStack.topAnchor.constraint(equalTo: view.topAnchor, constant: Offsets.topBottomOffset80).isActive = true
+        topBarHStack.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Offsets.topBarHStackLeftOffset).isActive = true
+        topBarHStack.rightAnchor.constraint(equalTo: view.rightAnchor, constant: Offsets.topBarHStackRightOffset).isActive = true
         
         dismissButton.translatesAutoresizingMaskIntoConstraints = false
-        dismissButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.1).isActive = true
+        dismissButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: Sizes.heightWidthSize0_1).isActive = true
         dismissButton.heightAnchor.constraint(equalTo: dismissButton.widthAnchor).isActive = true
         
         saveEditButton.translatesAutoresizingMaskIntoConstraints = false
-        saveEditButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2).isActive = true
-        saveEditButton.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.1).isActive = true
+        saveEditButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: Sizes.widthSize0_2).isActive = true
+        saveEditButton.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: Sizes.heightWidthSize0_1).isActive = true
         
         profileImage.translatesAutoresizingMaskIntoConstraints = false
         profileImage.topAnchor.constraint(equalTo: topBarHStack.bottomAnchor,
-                                          constant: adaptationToDifferentScreenSize(withSpecificSize: 40,
-                                                                                    andDefaultSize: 80)).isActive = true
+                                          constant: adaptationToDifferentScreenSize(withSpecificSize: Offsets.topBarHStackBottomSpecificOffset,
+                                                                                    andDefaultSize: Offsets.topBottomOffset80)).isActive = true
         profileImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        profileImage.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4).isActive = true
+        profileImage.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: Sizes.profileImageWidthSize).isActive = true
         profileImage.heightAnchor.constraint(equalTo: profileImage.widthAnchor).isActive = true
         
         addUserpicButton.translatesAutoresizingMaskIntoConstraints = false
@@ -293,58 +264,58 @@ final class DetailProfileViewController: UIViewController {
         
         lockIcon.translatesAutoresizingMaskIntoConstraints = false
         lockIcon.topAnchor.constraint(equalTo: profileImage.bottomAnchor,
-                                      constant: adaptationToDifferentScreenSize(withSpecificSize: 32.5,
-                                                                                andDefaultSize: 65)).isActive = true
+                                      constant: adaptationToDifferentScreenSize(withSpecificSize: Offsets.topSpecificOffset32_5,
+                                                                                andDefaultSize: Offsets.topDefaultOffset65)).isActive = true
         lockIcon.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        lockIcon.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.1).isActive = true
+        lockIcon.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: Sizes.heightWidthSize0_1).isActive = true
         lockIcon.heightAnchor.constraint(equalTo: lockIcon.widthAnchor).isActive = true
         
         nameField.translatesAutoresizingMaskIntoConstraints = false
         nameField.topAnchor.constraint(equalTo: lockIcon.bottomAnchor,
-                                       constant: adaptationToDifferentScreenSize(withSpecificSize: 32.5,
-                                                                                 andDefaultSize: 65)).isActive = true
+                                       constant: adaptationToDifferentScreenSize(withSpecificSize: Offsets.topSpecificOffset32_5,
+                                                                                 andDefaultSize: Offsets.topDefaultOffset65)).isActive = true
         nameField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        nameField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5).isActive = true
+        nameField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: Sizes.nameFieldWidthSize).isActive = true
         
         nameFieldDivider.translatesAutoresizingMaskIntoConstraints = false
-        nameFieldDivider.topAnchor.constraint(equalTo: nameField.bottomAnchor, constant: 5).isActive = true
+        nameFieldDivider.topAnchor.constraint(equalTo: nameField.bottomAnchor, constant: Offsets.bottomLeftOffset5).isActive = true
         nameFieldDivider.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         nameFieldDivider.widthAnchor.constraint(equalTo: nameField.widthAnchor).isActive = true
-        nameFieldDivider.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.001).isActive = true
+        nameFieldDivider.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: Sizes.nameFieldDividerHeightSize).isActive = true
         
         numberOfCharactersLabel.translatesAutoresizingMaskIntoConstraints = false
-        numberOfCharactersLabel.topAnchor.constraint(equalTo: nameFieldDivider.bottomAnchor, constant: 5).isActive = true
+        numberOfCharactersLabel.topAnchor.constraint(equalTo: nameFieldDivider.bottomAnchor, constant: Offsets.bottomLeftOffset5).isActive = true
         numberOfCharactersLabel.leftAnchor.constraint(equalTo: nameFieldDivider.leftAnchor).isActive = true
         
         birthdayField.translatesAutoresizingMaskIntoConstraints = false
         birthdayField.topAnchor.constraint(equalTo: nameFieldDivider.bottomAnchor,
-                                           constant: adaptationToDifferentScreenSize(withSpecificSize: 30,
-                                                                                     andDefaultSize: 40)).isActive = true
+                                           constant: adaptationToDifferentScreenSize(withSpecificSize: Offsets.topSpecificOffset30,
+                                                                                     andDefaultSize: Offsets.topDefaultOffset40)).isActive = true
         birthdayField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         birthdayField.widthAnchor.constraint(equalTo: nameField.widthAnchor).isActive = true
         
         birthdayFieldDivider.translatesAutoresizingMaskIntoConstraints = false
-        birthdayFieldDivider.topAnchor.constraint(equalTo: birthdayField.bottomAnchor, constant: 5).isActive = true
+        birthdayFieldDivider.topAnchor.constraint(equalTo: birthdayField.bottomAnchor, constant: Offsets.bottomLeftOffset5).isActive = true
         birthdayFieldDivider.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         birthdayFieldDivider.widthAnchor.constraint(equalTo: nameFieldDivider.widthAnchor).isActive = true
         birthdayFieldDivider.heightAnchor.constraint(equalTo: nameFieldDivider.heightAnchor).isActive = true
         
         genderField.translatesAutoresizingMaskIntoConstraints = false
         genderField.topAnchor.constraint(equalTo: birthdayField.bottomAnchor,
-                                         constant: adaptationToDifferentScreenSize(withSpecificSize: 30,
-                                                                                   andDefaultSize: 40)).isActive = true
+                                         constant: adaptationToDifferentScreenSize(withSpecificSize: Offsets.topSpecificOffset30,
+                                                                                   andDefaultSize: Offsets.topDefaultOffset40)).isActive = true
         genderField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         genderField.widthAnchor.constraint(equalTo: nameField.widthAnchor).isActive = true
         
         genderFieldDivider.translatesAutoresizingMaskIntoConstraints = false
-        genderFieldDivider.topAnchor.constraint(equalTo: genderField.bottomAnchor, constant: 5).isActive = true
+        genderFieldDivider.topAnchor.constraint(equalTo: genderField.bottomAnchor, constant: Offsets.bottomLeftOffset5).isActive = true
         genderFieldDivider.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         genderFieldDivider.widthAnchor.constraint(equalTo: nameFieldDivider.widthAnchor).isActive = true
         genderFieldDivider.heightAnchor.constraint(equalTo: nameFieldDivider.heightAnchor).isActive = true
     }
     
     private func setupView() {
-        title = "Saved profile"
+        title = Strings.viewSavedTitle
         view.tintColor = .white
     }
     
@@ -358,8 +329,8 @@ final class DetailProfileViewController: UIViewController {
     
     private func createPickerField(with placeholder: String, iconSystemName: String, inputView: UIView) -> PickerField {
         let textField = PickerField()
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 18, height: 18))
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 25, height: 18))
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: Sizes.widthSize18, height: Sizes.heightSize18))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: Sizes.viewWidthSize, height: Sizes.heightSize18))
         let icon = UIImage(systemName: iconSystemName)
         textField.leftViewMode = UITextField.ViewMode.always
         imageView.image = icon
@@ -387,8 +358,8 @@ final class DetailProfileViewController: UIViewController {
     }
     
     private func editModeInactive() {
-        saveEditButton.setTitle("Edit", for: .normal)
-        lockIcon.image = UIImage(systemName: "lock.fill")
+        saveEditButton.setTitle(Strings.saveEditButtonEditTitle, for: .normal)
+        lockIcon.image = UIImage(systemName: Images.lockImage)
         addUserpicButton.isHidden = true
         numberOfCharactersLabel.isHidden = true
         nameField.isUserInteractionEnabled = false
@@ -397,8 +368,8 @@ final class DetailProfileViewController: UIViewController {
     }
 
     private func editModeIsActive() {
-        saveEditButton.setTitle("Save", for: .normal)
-        lockIcon.image = UIImage(systemName: "lock.open.fill")
+        saveEditButton.setTitle(Strings.saveButtonTitle, for: .normal)
+        lockIcon.image = UIImage(systemName: Images.lockOpenImage)
         addUserpicButton.isHidden = false
         nameField.isUserInteractionEnabled = true
         birthdayField.isUserInteractionEnabled = true
@@ -407,16 +378,16 @@ final class DetailProfileViewController: UIViewController {
     
     private func getDateFromPicker(with date: Date) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy"
+        formatter.dateFormat = Strings.dateFormat
         birthdayField.text = formatter.string(from: date)
     }
     
     private func adaptationToDifferentScreenSize(withSpecificSize: CGFloat, andDefaultSize: CGFloat) -> CGFloat {
         let device = UIDevice()
-        if device.name == "iPod touch (7th generation)" ||
-            device.name == "iPhone SE (3rd generation)" ||
-            device.name == "iPhone 8" ||
-            device.name == "iPhone 8 Plus" {
+        if device.name == Strings.iPodTouchName ||
+            device.name == Strings.iPhoneSEName ||
+            device.name == Strings.iPhone8Name ||
+            device.name == Strings.iPhone8PlusName {
             return withSpecificSize
         } else {
             return andDefaultSize

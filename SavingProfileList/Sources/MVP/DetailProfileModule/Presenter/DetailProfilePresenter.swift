@@ -28,16 +28,16 @@ final class DetailProfilePresenter {
         guard let delegate = delegate else { return }
         
         if delegate.isEditButton {
-            let alert = UIAlertController(title: "Save changes?", message: nil, preferredStyle: .alert)
+            let alert = UIAlertController(title: Strings.saveChangesAlertTitle, message: nil, preferredStyle: .alert)
             
-            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
+            alert.addAction(UIAlertAction(title: Strings.saveChangesAlertActionTitleYes, style: .default, handler: { _ in
                 delegate.saveProfileData()
                 delegate.dismiss(animated: true)
             }))
-            alert.addAction(UIAlertAction(title: "No", style: .default, handler: { _ in
+            alert.addAction(UIAlertAction(title: Strings.saveChangesAlertActionTitleNo, style: .default, handler: { _ in
                 delegate.dismiss(animated: true)
             }))
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            alert.addAction(UIAlertAction(title: Strings.cancelTitle, style: .cancel))
             delegate.present(alert, animated: true)
         } else {
             delegate.dismiss(animated: true)
@@ -55,10 +55,10 @@ final class DetailProfilePresenter {
         
         guard let delegate = self.delegate else { return }
         
-        sheet.addAction(UIAlertAction(title: "Choose a picture", style: .default, handler: { _ in
+        sheet.addAction(UIAlertAction(title: Strings.chooseAPictureSheetTitle, style: .default, handler: { _ in
                         
             var config = PHPickerConfiguration()
-            config.selectionLimit = 1
+            config.selectionLimit = Limitation.selectionLimit
             config.filter = PHPickerFilter.images
             
             let pickerViewController = PHPickerViewController(configuration: config)
@@ -67,26 +67,26 @@ final class DetailProfilePresenter {
             delegate.present(pickerViewController, animated: true)
         }))
         
-        sheet.addAction(UIAlertAction(title: "Delete a picture", style: .destructive, handler: { _ in
+        sheet.addAction(UIAlertAction(title: Strings.chooseAPictureSheetActionTitle, style: .destructive, handler: { _ in
             
-            if imageView.image == UIImage(named: "empty.avatar") {
+            if imageView.image == UIImage(named: Images.emptyAvatarImage) {
                 return
             } else {
-                imageView.image = UIImage(named: "empty.avatar")
+                imageView.image = UIImage(named: Images.emptyAvatarImage)
             }
         }))
         
-        sheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        sheet.addAction(UIAlertAction(title: Strings.cancelTitle, style: .cancel))
         
         delegate.present(sheet, animated: true)
     }
     
     public func presentInvalidNumberAlert() {
         
-        let alert = UIAlertController(title: "Invalid number of characters",
-                                      message: "Enter a name containing from 3 to 15 characters",
+        let alert = UIAlertController(title: Strings.invalidNumberAlertTitle,
+                                      message: Strings.invalidNumberAlertMessage,
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+        alert.addAction(UIAlertAction(title: Strings.alertActionTitleOk, style: .cancel))
         
         guard let delegate = delegate else { return }
         

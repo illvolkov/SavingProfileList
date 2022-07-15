@@ -26,7 +26,7 @@ final class ProfileListViewController: UIViewController {
     private lazy var backgroundImage: UIImageView = {
         let imageView = UIImageView()
         
-        imageView.image = UIImage(named: "gradient.back")
+        imageView.image = UIImage(named: Images.backgroundImage)
         
         return imageView
     }()
@@ -35,7 +35,7 @@ final class ProfileListViewController: UIViewController {
         let hStack = UIStackView()
         
         hStack.axis = .horizontal
-        hStack.spacing = view.frame.width * 0.05
+        hStack.spacing = view.frame.width * Offsets.hStackSpacing
         
         return hStack
     }()
@@ -43,17 +43,17 @@ final class ProfileListViewController: UIViewController {
     private lazy var nameField: UITextField = {
         let nameField = UITextField()
         
-        if let button = nameField.value(forKey: "clearButton") as? UIButton {
+        if let button = nameField.value(forKey: Strings.clearButtonKey) as? UIButton {
             button.tintColor = .white
-            button.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
+            button.setImage(UIImage(systemName: Images.clearButtonImage), for: .normal)
         }
         
-        nameField.placeholder = "Enter profile name"
+        nameField.placeholder = Strings.nameFieldPlaceholder
         nameField.borderStyle = .roundedRect
         nameField.textColor = .white
         nameField.layer.borderColor = UIColor.white.cgColor
-        nameField.layer.borderWidth = 2
-        nameField.layer.cornerRadius = view.frame.width * 0.02
+        nameField.layer.borderWidth = Sizes.borderWidth2
+        nameField.layer.cornerRadius = view.frame.width * Sizes.cornerRadius2
         nameField.clearButtonMode = .whileEditing
         
         return nameField
@@ -62,10 +62,10 @@ final class ProfileListViewController: UIViewController {
     private lazy var cancelButton: UIButton = {
         let button = UIButton()
         
-        button.setTitle("Cancel", for: .normal)
+        button.setTitle(Strings.cancelTitle, for: .normal)
         if let titleLabel = button.titleLabel {
             titleLabel.textColor = .white
-            titleLabel.font = .systemFont(ofSize: view.frame.width * 0.045)
+            titleLabel.font = .systemFont(ofSize: view.frame.width * Sizes.fontSize0_045)
         }
         button.addTarget(self, action: #selector(cancelButtonDidTap), for: .touchUpInside)
         
@@ -75,13 +75,13 @@ final class ProfileListViewController: UIViewController {
     private lazy var saveButton: UIButton = {
         let button = UIButton()
         
-        button.setTitle("Save", for: .normal)
+        button.setTitle(Strings.saveButtonTitle, for: .normal)
         if let titleLabel = button.titleLabel {
             titleLabel.textColor = .white
-            titleLabel.font = .systemFont(ofSize: view.frame.width * 0.045)
+            titleLabel.font = .systemFont(ofSize: view.frame.width * Sizes.fontSize0_045)
         }
         button.layer.borderColor = UIColor.white.cgColor
-        button.layer.borderWidth = 2
+        button.layer.borderWidth = Sizes.borderWidth2
         button.addTarget(self, action: #selector(saveButtonDidTap), for: .touchUpInside)
         
         return button
@@ -94,16 +94,16 @@ final class ProfileListViewController: UIViewController {
         tableView.separatorColor = .lightGray
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: Strings.cellIdentifier)
         
         return tableView
     }()
     
     private lazy var numberOfCharactersLabel: UILabel = {
         let label = UILabel()
-        label.text = "from 3 to 16 characters"
+        label.text = Strings.numberOfCharactersLabelText
         label.textColor = .white
-        label.font = .systemFont(ofSize: view.frame.width * 0.03)
+        label.font = .systemFont(ofSize: view.frame.width * Sizes.numberOfCharactersLabelFontSize)
         return label
     }()
     
@@ -147,29 +147,29 @@ final class ProfileListViewController: UIViewController {
         backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
         hStackView.translatesAutoresizingMaskIntoConstraints = false
-        hStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
-        hStackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
-        hStackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
+        hStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Offsets.hStackViewTopOffset).isActive = true
+        hStackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Offsets.bottomLeftOffset30).isActive = true
+        hStackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Offsets.bottomLeftOffset30).isActive = true
         
         numberOfCharactersLabel.translatesAutoresizingMaskIntoConstraints = false
-        numberOfCharactersLabel.topAnchor.constraint(equalTo: hStackView.bottomAnchor, constant: 5).isActive = true
-        numberOfCharactersLabel.leftAnchor.constraint(equalTo: hStackView.leftAnchor, constant: 5).isActive = true
+        numberOfCharactersLabel.topAnchor.constraint(equalTo: hStackView.bottomAnchor, constant: Offsets.bottomLeftOffset5).isActive = true
+        numberOfCharactersLabel.leftAnchor.constraint(equalTo: hStackView.leftAnchor, constant: Offsets.bottomLeftOffset5).isActive = true
         
         saveButton.translatesAutoresizingMaskIntoConstraints = false
-        saveButton.topAnchor.constraint(equalTo: hStackView.bottomAnchor, constant: 30).isActive = true
+        saveButton.topAnchor.constraint(equalTo: hStackView.bottomAnchor, constant: Offsets.bottomLeftOffset30).isActive = true
         saveButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        saveButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2).isActive = true
-        saveButton.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.1).isActive = true
+        saveButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: Sizes.widthSize0_2).isActive = true
+        saveButton.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: Sizes.heightWidthSize0_1).isActive = true
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: 30).isActive = true
+        tableView.topAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: Offsets.bottomLeftOffset30).isActive = true
         tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
     private func setupView() {
-        title = "Save profile"
+        title = Strings.viewSaveTitle
     }
     
     private func setupNavigationBar() {
@@ -200,7 +200,7 @@ final class ProfileListViewController: UIViewController {
     
     @objc private func cancelButtonDidTap() {
         nameField.resignFirstResponder()
-        UIView.animate(withDuration: 0.4) { [weak self] in
+        UIView.animate(withDuration: Display.animateDuration0_4) { [weak self] in
             guard let self = self else { return }
             self.cancelButton.isHidden = true
             self.numberOfCharactersLabel.isHidden = true
@@ -216,7 +216,7 @@ final class ProfileListViewController: UIViewController {
             return
         }
         
-        if text.count < 3 || text.count > 16 {
+        if text.count < Limitation.textCount3 || text.count > Limitation.textCount16 {
             presenter.presentInvalidNumberAlert()
         } else {
             presenter.saveProfileBy(name: text.trimmingCharacters(in: .whitespaces))
@@ -227,7 +227,7 @@ final class ProfileListViewController: UIViewController {
     }
     
     @objc private func keyBoardWillShow(notification: NSNotification) {
-        UIView.transition(with: cancelButton, duration: 0.4, options: .transitionFlipFromRight) { [weak self] in
+        UIView.transition(with: cancelButton, duration: Display.animateDuration0_4, options: .transitionFlipFromRight) { [weak self] in
             guard let self = self else { return }
             self.cancelButton.isHidden = false
             self.numberOfCharactersLabel.isHidden = false
@@ -244,7 +244,7 @@ extension ProfileListViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Strings.cellIdentifier, for: indexPath)
         
         var content = cell.defaultContentConfiguration()
         content.text = models[indexPath.row].name
@@ -263,7 +263,7 @@ extension ProfileListViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        view.frame.width * 0.2
+        view.frame.width * Sizes.heightForRow
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {

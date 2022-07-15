@@ -32,7 +32,7 @@ final class StorageService: StorageServiceProtocol {
         do {
             models = try context.fetch(Profile.fetchRequest())
             completion()
-            print("Profiles given to the Presenter")
+            print(Strings.giveProfilesCompletion)
         }
         catch {
             print(error)
@@ -48,7 +48,7 @@ final class StorageService: StorageServiceProtocol {
         do {
             try context.save()
             giveProfiles {
-                print("Profile created")
+                print(Strings.profileCreatedCompletion)
             }
         }
         catch {
@@ -64,7 +64,7 @@ final class StorageService: StorageServiceProtocol {
         do {
             try context.save()
             giveProfiles {
-                print("Profile deleted")
+                print(Strings.profileDeletedCompletion)
             }
         }
         catch {
@@ -83,7 +83,7 @@ final class StorageService: StorageServiceProtocol {
         do {
             try context.save()
             giveProfiles {
-                print("Profile updated")
+                print(Strings.profileUpdatedCompletion)
             }
         }
         catch {

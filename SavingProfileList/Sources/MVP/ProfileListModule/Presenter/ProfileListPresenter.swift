@@ -37,8 +37,8 @@ final class ProfileListPresenter {
     
     public func presentEnterNameAlert() {
         
-        let alert = UIAlertController(title: "Enter profile name", message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+        let alert = UIAlertController(title: Strings.enterNameAlertTitle, message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: Strings.alertActionTitleOk, style: .cancel))
         
         guard let delegate = delegate else { return }
         
@@ -47,10 +47,10 @@ final class ProfileListPresenter {
     
     public func presentInvalidNumberAlert() {
         
-        let alert = UIAlertController(title: "Invalid number of characters",
-                                      message: "Enter a name containing from 3 to 15 characters",
+        let alert = UIAlertController(title: Strings.invalidNumberAlertTitle,
+                                      message: Strings.invalidNumberAlertMessage,
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+        alert.addAction(UIAlertAction(title: Strings.alertActionTitleOk, style: .cancel))
         
         guard let delegate = delegate else { return }
         
