@@ -196,6 +196,16 @@ final class ProfileListViewController: UIViewController {
         numberOfCharactersLabel.isHidden = true
     }
     
+    static public func removeSpacesFrom(_ text: String) -> String {
+        var newText = ""
+        for char in text {
+            if char != " " {
+                newText.append(char)
+            }
+        }
+        return newText
+    }
+    
     //MARK: - Actions
     
     @objc private func hideInputElements() {
@@ -216,10 +226,12 @@ final class ProfileListViewController: UIViewController {
             return
         }
         
-        if text.count < Limitation.textCount3 || text.count > Limitation.textCount16 {
+        let newText = ProfileListViewController.removeSpacesFrom(text)
+        
+        if newText.count < Limitation.textCount3 || newText.count > Limitation.textCount16 {
             presenter.presentInvalidNumberAlert()
         } else {
-            presenter.saveProfileBy(name: text.trimmingCharacters(in: .whitespaces))
+            presenter.saveProfileBy(name: newText.trimmingCharacters(in: .whitespaces))
             presenter.getProfiles()
             hideInputElements()
             nameField.text = ""

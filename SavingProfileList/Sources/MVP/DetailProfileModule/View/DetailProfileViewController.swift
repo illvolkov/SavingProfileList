@@ -29,15 +29,7 @@ final class DetailProfileViewController: UIViewController {
             if isEditButton {
                 editModeIsActive()
             } else {
-                guard let presenter = presenter else { return }
-
-                if (nameField.text?.count ?? 0) < Limitation.textCount3 || (nameField.text?.count ?? 0) > Limitation.textCount16 {
-                    presenter.presentInvalidNumberAlert()
-                    return
-                } else {
-                    editModeInactive()
-                    saveProfileData()
-                }
+                saveProfileData()
             }
         }
     }
@@ -143,7 +135,7 @@ final class DetailProfileViewController: UIViewController {
         let icon = UIImage(systemName: Images.nameFieldImages)
         textField.leftViewMode = UITextField.ViewMode.always
         imageView.image = icon
-        //for width offset
+        //view to indent icon from textfield
         view.addSubview(imageView)
         textField.leftView = view
         textField.inputAccessoryView = doneButtonForKeyboard
@@ -153,8 +145,12 @@ final class DetailProfileViewController: UIViewController {
         return textField
     }()
     
-    private lazy var birthdayField = createPickerField(with: Strings.birthdayFieldPlaceholder, iconSystemName: Images.birthdayFieldImage, inputView: birthdayPicker)
-    private lazy var genderField = createPickerField(with: Strings.genderFieldPlaceholder, iconSystemName: Images.genderFieldImage, inputView: genderPicker)
+    private lazy var birthdayField = createPickerField(with: Strings.birthdayFieldPlaceholder,
+                                                       iconSystemName: Images.birthdayFieldImage,
+                                                       inputView: birthdayPicker)
+    private lazy var genderField = createPickerField(with: Strings.genderFieldPlaceholder,
+                                                     iconSystemName: Images.genderFieldImage,
+                                                     inputView: genderPicker)
     
     private lazy var doneButtonForKeyboard: UIToolbar = {
         let toolBar = UIToolbar()
@@ -455,11 +451,26 @@ extension DetailProfileViewController: DetailProfilePresenterDelegate {
             return
         }
         
-        presenter.saveNewProfileData(with: selectedProfile,
-                                     newName: nameField.text ?? "",
-                                     newBirthday: (birthdayField.text?.isEmpty ?? true) ? nil : birthdayPicker.date,
-                                     newGender: genderField.text ?? "",
-                                     newUserpic: profileImage.image?.pngData() ?? Data())
+        guard let text = nameField.text, !text.isEmpty else {
+            presenter.presentEnterNameAlert()
+            isEditButton = true
+            return
+        }
+        
+        let newText = ProfileListViewController.removeSpacesFrom(text)
+        
+        if newText.count < Limitation.textCount3 || newText.count > Limitation.textCount16 {
+            presenter.presentInvalidNumberAlert()
+            isEditButton = true
+            return
+        } else {
+            editModeInactive()
+            presenter.saveNewProfileData(with: selectedProfile,
+                                         newName: newText.trimmingCharacters(in: .whitespaces),
+                                         newBirthday: (birthdayField.text?.isEmpty ?? true) ? nil : birthdayPicker.date,
+                                         newGender: genderField.text ?? "",
+                                         newUserpic: profileImage.image?.pngData() ?? Data())
+        }
     }
 }
 

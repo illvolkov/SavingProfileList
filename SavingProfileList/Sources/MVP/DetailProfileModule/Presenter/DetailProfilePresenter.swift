@@ -81,6 +81,16 @@ final class DetailProfilePresenter {
         delegate.present(sheet, animated: true)
     }
     
+    public func presentEnterNameAlert() {
+        
+        let alert = UIAlertController(title: Strings.enterNameAlertTitle, message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: Strings.alertActionTitleOk, style: .cancel))
+        
+        guard let delegate = delegate else { return }
+        
+        delegate.present(alert, animated: true)
+    }
+    
     public func presentInvalidNumberAlert() {
         
         let alert = UIAlertController(title: Strings.invalidNumberAlertTitle,
