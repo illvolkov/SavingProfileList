@@ -379,6 +379,7 @@ final class DetailProfileViewController: UIViewController {
     private func getDateFromPicker(with date: Date) {
         let formatter = DateFormatter()
         formatter.dateFormat = Strings.dateFormat
+        birthdayPicker.date = date
         birthdayField.text = formatter.string(from: date)
     }
     
