@@ -15,7 +15,7 @@ final class DetailProfileViewController: UIViewController {
     
     public var presenter: DetailProfilePresenter?
     
-//    //MARK: - Const
+    //MARK: - Const
 
     let genders = Sequences.gendersList
     
