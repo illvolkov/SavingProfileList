@@ -16,8 +16,12 @@ final class ProfileListPresenter {
     
     typealias PresenterDelegate = ProfileListPresenterDelegate & UIViewController
     
+    //MARK: - References
+    
     weak public var delegate: PresenterDelegate?
     public var storageService: StorageServiceProtocol?
+    
+    //MARK: - Functions
     
     public func getProfiles() {
         

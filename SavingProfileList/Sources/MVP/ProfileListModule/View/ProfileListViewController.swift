@@ -127,23 +127,6 @@ final class ProfileListViewController: UIViewController {
         showHideCancelButton()
     }
     
-    private func showHideCancelButton() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyBoardWillShow),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-        cancelButton.isHidden = true
-        numberOfCharactersLabel.isHidden = true
-    }
-    
-    @objc private func keyBoardWillShow(notification: NSNotification) {
-        UIView.transition(with: cancelButton, duration: 0.4, options: .transitionFlipFromRight) { [weak self] in
-            guard let self = self else { return }
-            self.cancelButton.isHidden = false
-            self.numberOfCharactersLabel.isHidden = false
-        }
-    }
-    
     //MARK: - Settings
     
     private func setupHierarchy() {
@@ -202,6 +185,17 @@ final class ProfileListViewController: UIViewController {
         navigationController.navigationBar.standardAppearance = appearance
     }
     
+    //MARK: - Functions
+    
+    private func showHideCancelButton() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyBoardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        cancelButton.isHidden = true
+        numberOfCharactersLabel.isHidden = true
+    }
+    
     //MARK: - Actions
     
     @objc private func cancelButtonDidTap() {
@@ -229,6 +223,14 @@ final class ProfileListViewController: UIViewController {
             presenter.getProfiles()
             nameField.resignFirstResponder()
             nameField.text = ""
+        }
+    }
+    
+    @objc private func keyBoardWillShow(notification: NSNotification) {
+        UIView.transition(with: cancelButton, duration: 0.4, options: .transitionFlipFromRight) { [weak self] in
+            guard let self = self else { return }
+            self.cancelButton.isHidden = false
+            self.numberOfCharactersLabel.isHidden = false
         }
     }
 }

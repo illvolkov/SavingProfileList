@@ -16,9 +16,13 @@ protocol DetailProfilePresenterDelegate {
 
 final class DetailProfilePresenter {
     typealias DetailPresenterDelegate = DetailProfilePresenterDelegate & UIViewController
+    
+    //MARK: - References
 
     weak public var delegate: DetailPresenterDelegate?
     public var storageSerivce: StorageServiceProtocol?
+    
+    //MARK: - Functions
     
     public func dismissDetailProfileViewController() {
         guard let delegate = delegate else { return }
