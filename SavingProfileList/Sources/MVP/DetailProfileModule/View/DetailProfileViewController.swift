@@ -111,7 +111,7 @@ final class DetailProfileViewController: UIViewController {
     private lazy var profileImage: UIImageView = {
         let profileImage = UIImageView()
         profileImage.image = UIImage(named: Images.emptyAvatarImage)
-        profileImage.layer.cornerRadius = view.frame.width * Sizes.cornerRadius2
+        profileImage.layer.cornerRadius = view.frame.width * Sizes.profileImageCornerRadius
         profileImage.layer.masksToBounds = true
         profileImage.layer.contentsRect = CGRect(x: profileImage.frame.origin.x + Offsets.profileImageXYBoundsOffset0_06,
                                                  y: profileImage.frame.origin.y + Offsets.profileImageXYBoundsOffset0_06,

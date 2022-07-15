@@ -27,6 +27,7 @@ enum Offsets {
 enum Sizes {
     static let borderWidth2: CGFloat = 2
     static let cornerRadius2: CGFloat = 0.02
+    static let profileImageCornerRadius: CGFloat = 0.2
     static let fontSize0_045: CGFloat = 0.045
     static let numberOfCharactersLabelFontSize: CGFloat = 0.03
     static let widthSize0_2: CGFloat = 0.2
