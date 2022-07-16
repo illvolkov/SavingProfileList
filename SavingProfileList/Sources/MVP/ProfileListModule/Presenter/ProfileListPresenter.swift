@@ -12,12 +12,16 @@ protocol ProfileListPresenterDelegate {
     func present(profiles: [Profile])
 }
 
-typealias PresenterDelegate = ProfileListPresenterDelegate & UIViewController
-
 final class ProfileListPresenter {
+    
+    typealias PresenterDelegate = ProfileListPresenterDelegate & UIViewController
+    
+    //MARK: - References
     
     weak public var delegate: PresenterDelegate?
     public var storageService: StorageServiceProtocol?
+    
+    //MARK: - Functions
     
     public func getProfiles() {
         
@@ -33,8 +37,20 @@ final class ProfileListPresenter {
     
     public func presentEnterNameAlert() {
         
-        let alert = UIAlertController(title: "Enter profile name", message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+        let alert = UIAlertController(title: Strings.enterNameAlertTitle, message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: Strings.alertActionTitleOk, style: .cancel))
+        
+        guard let delegate = delegate else { return }
+        
+        delegate.present(alert, animated: true)
+    }
+    
+    public func presentInvalidNumberAlert() {
+        
+        let alert = UIAlertController(title: Strings.invalidNumberAlertTitle,
+                                      message: Strings.invalidNumberAlertMessage,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: Strings.alertActionTitleOk, style: .cancel))
         
         guard let delegate = delegate else { return }
         
@@ -53,5 +69,13 @@ final class ProfileListPresenter {
         guard let storageService = storageService else { return }
         
         storageService.delete(profile: profile)
+    }
+    
+    public func showDetailProfileViewController(with selectedProfile: Profile) {
+        let detailProfileViewController = ModuleBuilder.createDetailProfileModule(with: selectedProfile)
+        guard let delegate = delegate else { return }
+        
+        detailProfileViewController.modalPresentationStyle = .fullScreen
+        delegate.present(detailProfileViewController, animated: true)
     }
 }
