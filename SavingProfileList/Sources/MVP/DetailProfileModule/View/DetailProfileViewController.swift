@@ -508,6 +508,10 @@ extension DetailProfileViewController: UIPickerViewDelegate, UIPickerViewDataSou
     }
 
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        genderField.text = genders[row]
+        if row == 0 {
+            genderField.text = ""
+        } else {
+            genderField.text = genders[row]
+        }
     }
 }

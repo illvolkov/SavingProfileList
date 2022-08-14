@@ -78,7 +78,8 @@ enum Strings {
 }
 
 enum Sequences {
-    static let gendersList: [String] = ["Male",
+    static let gendersList: [String] = ["Choose a gender",
+                                        "Male",
                                         "Female",
                                         "Lesbian",
                                         "Gay",

@@ -107,6 +107,12 @@ final class ProfileListViewController: UIViewController {
         return label
     }()
     
+    private lazy var separator: UIView = {
+        let separator = UIView()
+        separator.backgroundColor = .white
+        return separator
+    }()
+    
     //MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -210,8 +216,7 @@ final class ProfileListViewController: UIViewController {
     
     @objc private func hideInputElements() {
         nameField.resignFirstResponder()
-        UIView.animate(withDuration: Display.animateDuration0_4) { [weak self] in
-            guard let self = self else { return }
+        UIView.animate(withDuration: Display.animateDuration0_4) {
             self.cancelButton.isHidden = true
             self.numberOfCharactersLabel.isHidden = true
         }
@@ -239,8 +244,7 @@ final class ProfileListViewController: UIViewController {
     }
     
     @objc private func keyBoardWillShow(notification: NSNotification) {
-        UIView.transition(with: cancelButton, duration: Display.animateDuration0_4, options: .transitionFlipFromRight) { [weak self] in
-            guard let self = self else { return }
+        UIView.transition(with: cancelButton, duration: Display.animateDuration0_4, options: .transitionFlipFromRight) {
             self.cancelButton.isHidden = false
             self.numberOfCharactersLabel.isHidden = false
         }
