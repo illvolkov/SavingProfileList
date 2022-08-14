@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		041F7673287DEF1800D7E88F /* DetailProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041F7672287DEF1800D7E88F /* DetailProfilePresenter.swift */; };
+		041F7675287DF0E200D7E88F /* DetailProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041F7674287DF0E200D7E88F /* DetailProfileViewController.swift */; };
+		041F76782880D6E500D7E88F /* PickerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041F76772880D6E400D7E88F /* PickerField.swift */; };
+		041F767A2881C86200D7E88F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041F76792881C86200D7E88F /* Constants.swift */; };
 		04272A22287CCC7900125A6C /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04272A21287CCC7900125A6C /* ModuleBuilder.swift */; };
 		04863731287B40170056D9CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04863730287B40170056D9CE /* AppDelegate.swift */; };
 		04863735287B40170056D9CE /* ProfileListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04863734287B40170056D9CE /* ProfileListViewController.swift */; };
@@ -21,6 +25,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		041F7672287DEF1800D7E88F /* DetailProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProfilePresenter.swift; sourceTree = "<group>"; };
+		041F7674287DF0E200D7E88F /* DetailProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProfileViewController.swift; sourceTree = "<group>"; };
+		041F76772880D6E400D7E88F /* PickerField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerField.swift; sourceTree = "<group>"; };
+		041F76792881C86200D7E88F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		04272A21287CCC7900125A6C /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		0486372D287B40170056D9CE /* SavingProfileList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SavingProfileList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04863730287B40170056D9CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +55,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		041F7670287DEEF900D7E88F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				041F7674287DF0E200D7E88F /* DetailProfileViewController.swift */,
+				041F76762880D6D100D7E88F /* PickerField */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		041F7671287DEF0400D7E88F /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				041F7672287DEF1800D7E88F /* DetailProfilePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		041F76762880D6D100D7E88F /* PickerField */ = {
+			isa = PBXGroup;
+			children = (
+				041F76772880D6E400D7E88F /* PickerField.swift */,
+			);
+			path = PickerField;
+			sourceTree = "<group>";
+		};
+		047D071E287DEE4E0073166F /* DetailProfileModule */ = {
+			isa = PBXGroup;
+			children = (
+				041F7671287DEF0400D7E88F /* Presenter */,
+				041F7670287DEEF900D7E88F /* View */,
+			);
+			path = DetailProfileModule;
+			sourceTree = "<group>";
+		};
 		04863724287B40170056D9CE = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +119,7 @@
 			children = (
 				04863756287B6A200056D9CE /* Profile+CoreDataClass.swift */,
 				04863757287B6A200056D9CE /* Profile+CoreDataProperties.swift */,
+				041F76792881C86200D7E88F /* Constants.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -103,6 +146,7 @@
 			children = (
 				04863760287CCB4C0056D9CE /* ModuleBuilder */,
 				0486375A287C571F0056D9CE /* ProfileListModule */,
+				047D071E287DEE4E0073166F /* DetailProfileModule */,
 				04863747287B42E50056D9CE /* Model */,
 				0486375B287C57900056D9CE /* Services */,
 			);
@@ -236,11 +280,15 @@
 				04863735287B40170056D9CE /* ProfileListViewController.swift in Sources */,
 				0486375F287C6D140056D9CE /* ProfileListPresenter.swift in Sources */,
 				0486375D287C57A60056D9CE /* StorageService.swift in Sources */,
+				041F7673287DEF1800D7E88F /* DetailProfilePresenter.swift in Sources */,
 				04272A22287CCC7900125A6C /* ModuleBuilder.swift in Sources */,
+				041F7675287DF0E200D7E88F /* DetailProfileViewController.swift in Sources */,
 				04863731287B40170056D9CE /* AppDelegate.swift in Sources */,
+				041F76782880D6E500D7E88F /* PickerField.swift in Sources */,
 				04863759287B6A200056D9CE /* Profile+CoreDataProperties.swift in Sources */,
 				0486373B287B40180056D9CE /* SavingProfileList.xcdatamodeld in Sources */,
 				04863758287B6A200056D9CE /* Profile+CoreDataClass.swift in Sources */,
+				041F767A2881C86200D7E88F /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,9 +441,11 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -422,9 +472,11 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

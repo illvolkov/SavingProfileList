@@ -19,4 +19,15 @@ final class ModuleBuilder {
         presenter.storageService = storageService
         return view
     }
+    
+    static func createDetailProfileModule(with selectedProfile: Profile) -> UIViewController {
+        let view = DetailProfileViewController(selectedProfile: selectedProfile)
+        let presenter = DetailProfilePresenter()
+        let storageService = StorageService()
+        
+        view.presenter = presenter
+        presenter.delegate = view
+        presenter.storageSerivce = storageService
+        return view
+    }
 }
